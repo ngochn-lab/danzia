@@ -1,0 +1,594 @@
+<div class="banner-section">
+  <div class="banner-container">
+    <button class="banner-arrow banner-arrow-left" aria-label="Scroll left" type="button">&#8249;</button>
+    <div class="banner-images-row" id="bannerImagesRow">
+      <div class="banner-image banner-image--small">
+        {% if section.settings.image_1 %}
+          <img 
+            src="{{ section.settings.image_1 | img_url: '600x400' }}" 
+            alt="{{ section.settings.image_1.alt | escape }}"
+            loading="lazy"
+            class="banner-img"
+            style="object-position: {{ section.settings.image_1_position | default: 'center center' }}; object-fit: {{ section.settings.image_1_zoom | default: 'cover' }};"
+          >
+        {% else %}
+          <div class="banner-placeholder source-sans-pro">
+            <p>Image 1 (25%)</p>
+          </div>
+        {% endif %}
+        {% if section.settings.link_1 != blank %}
+          <a href="{{ section.settings.link_1 }}" class="banner-link">
+            <span class="visually-hidden">{{ section.settings.link_text_1 | default: 'Link 1' }}</span>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="banner-image banner-image--large">
+        {% if section.settings.image_2 %}
+          <img 
+            src="{{ section.settings.image_2 | img_url: '1200x600' }}" 
+            alt="{{ section.settings.image_2.alt | escape }}"
+            loading="lazy"
+            class="banner-img"
+            style="object-position: {{ section.settings.image_2_position | default: 'center center' }}; object-fit: {{ section.settings.image_2_zoom | default: 'cover' }};"
+          >
+        {% else %}
+          <div class="banner-placeholder source-sans-pro">
+            <p>Image 2 (50%)</p>
+          </div>
+        {% endif %}
+        
+        <!-- Text overlay for center image -->
+        <div class="banner-text-overlay source-sans-pro">
+          <div class="stars-rating">★★★★★</div>
+          <h2 class="banner-title source-sans-pro-semibold">{{ section.settings.banner_title | default: 'MOST-LOVED LINEN' }}</h2>
+          <p class="banner-testimonial source-sans-pro-regular">{{ section.settings.banner_testimonial | default: '"Obsessed! Wonderful fit and quality. Perfect for summer."' }}</p>
+          {% if section.settings.banner_button_text != blank and section.settings.banner_button_url != blank %}
+            <a href="{{ section.settings.banner_button_url }}" class="banner-button source-sans-pro-semibold">
+              {{ section.settings.banner_button_text | default: 'SHOP NOW' }}
+            </a>
+          {% endif %}
+        </div>
+        
+        {% if section.settings.link_2 != blank %}
+          <a href="{{ section.settings.link_2 }}" class="banner-link">
+            <span class="visually-hidden">{{ section.settings.link_text_2 | default: 'Link 2' }}</span>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="banner-image banner-image--small">
+        {% if section.settings.image_3 %}
+          <img 
+            src="{{ section.settings.image_3 | img_url: '600x400' }}" 
+            alt="{{ section.settings.image_3.alt | escape }}"
+            loading="lazy"
+            class="banner-img"
+            style="object-position: {{ section.settings.image_3_position | default: 'center center' }}; object-fit: {{ section.settings.image_3_zoom | default: 'cover' }};"
+          >
+        {% else %}
+          <div class="banner-placeholder source-sans-pro">
+            <p>Image 3 (25%)</p>
+          </div>
+        {% endif %}
+        {% if section.settings.link_3 != blank %}
+          <a href="{{ section.settings.link_3 }}" class="banner-link">
+            <span class="visually-hidden">{{ section.settings.link_text_3 | default: 'Link 3' }}</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <button class="banner-arrow banner-arrow-right" aria-label="Scroll right" type="button">&#8250;</button>
+  </div>
+</div>
+
+<style>
+.banner-section {
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow-x: hidden;
+  padding: 0;
+  background: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.banner-container {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.banner-images-row {
+  display: flex;
+  width: 100vw;
+  max-width: 100vw;
+  gap: 15px;
+  transition: none;
+  overflow-x: visible;
+  box-sizing: border-box;
+}
+
+.banner-image {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.banner-image--small {
+  flex: 0 0 25%;
+  min-width: 0;
+}
+
+.banner-image--large {
+  flex: 0 0 50%;
+  min-width: 0;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.banner-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.banner-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #333;
+  z-index: 3;
+  max-width: 80%;
+}
+
+.stars-rating {
+  font-size: 24px;
+  color: #ffd700;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.banner-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.banner-testimonial {
+  font-size: 16px;
+  font-style: italic;
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.banner-button {
+  display: inline-block;
+  background-color: #333;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+  border: 2px solid #333;
+  border-radius: 50px; 
+}
+
+.banner-button:hover {
+  background-color: transparent;
+  color: #333;
+}
+
+.banner-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  border: 2px dashed #ccc;
+  color: #666;
+  font-size: 16px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Arrows: hidden on desktop, visible on mobile/tablet */
+.banner-arrow {
+  display: none;
+}
+
+/* Mobile/tablet: enable scroll, show arrows, hide scrollbar */
+@media screen and (max-width: 900px) {
+  .banner-section {
+    padding: 0;
+    min-height: 0;
+  }
+  .banner-container {
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+  }
+  .banner-images-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    gap: 16px;
+    width: 100vw;
+    max-width: 100vw;
+    padding-bottom: 16px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    box-sizing: border-box;
+  }
+  .banner-images-row::-webkit-scrollbar {
+    display: none;
+    height: 0;
+    width: 0;
+    background: transparent;
+  }
+  .banner-image {
+    height: 320px;
+    min-width: 80vw;
+    max-width: 90vw;
+    width: 90vw;
+    flex: 0 0 auto;
+    border-left: none;
+    border-right: none;
+    scroll-snap-align: center;
+    box-sizing: border-box;
+  }
+  .banner-arrow {
+    background: transparent;
+    border: none;
+    width: 52px;
+    height: 52px;
+    font-size: 2.1rem;
+    color: #222;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  .banner-arrow:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.3);
+  }
+  .banner-arrow:active {
+    background: rgba(238,242,247,0.2);
+  }
+  .banner-arrow-left {
+    left: 0;
+  }
+  .banner-arrow-right {
+    right: 0;
+  }
+  .banner-text-overlay {
+    max-width: 90vw;
+    padding: 16px;
+  }
+  .stars-rating { font-size: 18px; margin-bottom: 13px; }
+  .banner-title { font-size: 22px; letter-spacing: 1px; margin-bottom: 17px; line-height: 1.3; }
+  .banner-testimonial { font-size: 15px; margin-bottom: 18px; line-height: 1.5; }
+  .banner-button { padding: 12px 24px; font-size: 14px; margin-top: 5px; }
+}
+
+@media screen and (max-width: 480px) {
+  .banner-image {
+    height: 220px;
+    min-width: 98vw;
+    max-width: 100vw;
+    width: 100vw;
+  }
+  .banner-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1.5rem;
+  }
+  .banner-text-overlay { padding: 10px; }
+  .banner-title { font-size: 18px; margin-bottom: 14px; }
+  .banner-testimonial { font-size: 13px; margin-bottom: 15px; }
+  .stars-rating { font-size: 15px; margin-bottom: 10px; }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var row = document.getElementById('bannerImagesRow');
+  var left = document.querySelector('.banner-arrow-left');
+  var right = document.querySelector('.banner-arrow-right');
+
+  function isMobile() {
+    return window.matchMedia('(max-width: 900px)').matches;
+  }
+
+  function getSlideWidth() {
+    var images = row.querySelectorAll('.banner-image');
+    if (!images || images.length < 1) return row.offsetWidth;
+    var styles = window.getComputedStyle(row);
+    var gap = styles && styles.gap ? parseInt(styles.gap, 10) || 0 : 16;
+    return images[0].offsetWidth + gap;
+  }
+
+  function scrollToCenterImage() {
+    // Scroll to center image (index 1)
+    var images = row.querySelectorAll('.banner-image');
+    if (images.length >= 3) {
+      var leftWidth = images[0].offsetWidth + (parseInt(getComputedStyle(row).gap, 10) || 16);
+      row.scrollTo({left: leftWidth, behavior:'instant'});
+    }
+  }
+
+  function getCurrentIndex() {
+    // Returns the index of the image currently most visible in the viewport
+    var images = row.querySelectorAll('.banner-image');
+    var scrollLeft = row.scrollLeft;
+    var slideWidth = getSlideWidth();
+    return Math.round(scrollLeft / slideWidth);
+  }
+
+  function scrollToImage(idx) {
+    var slideWidth = getSlideWidth();
+    row.scrollTo({left: idx * slideWidth, behavior: 'smooth'});
+  }
+
+  function addArrowListeners() {
+    var images = row.querySelectorAll('.banner-image');
+    var maxIdx = images.length - 1;
+
+    left.addEventListener('click', function() {
+      var currentIdx = getCurrentIndex();
+      if (currentIdx <= 0) {
+        // At first image, scroll to last image
+        scrollToImage(maxIdx);
+      } else {
+        scrollToImage(currentIdx - 1);
+      }
+    });
+
+    right.addEventListener('click', function() {
+      var currentIdx = getCurrentIndex();
+      if (currentIdx >= maxIdx) {
+        // At last image, scroll to first image
+        scrollToImage(0);
+      } else {
+        scrollToImage(currentIdx + 1);
+      }
+    });
+  }
+
+  if (isMobile()) {
+    scrollToCenterImage();
+    addArrowListeners();
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Main Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "First Image (25% width)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link URL 1"
+    },
+    {
+      "type": "text",
+      "id": "link_text_1",
+      "label": "Link Text 1",
+      "default": "Link 1"
+    },
+    {
+      "type": "select",
+      "id": "image_1_position",
+      "label": "Image 1 Position",
+      "default": "center center",
+      "options": [
+        { "value": "left top", "label": "Top Left" },
+        { "value": "center top", "label": "Top Center" },
+        { "value": "right top", "label": "Top Right" },
+        { "value": "left center", "label": "Center Left" },
+        { "value": "center center", "label": "Center Center" },
+        { "value": "right center", "label": "Center Right" },
+        { "value": "left bottom", "label": "Bottom Left" },
+        { "value": "center bottom", "label": "Bottom Center" },
+        { "value": "right bottom", "label": "Bottom Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_1_zoom",
+      "label": "Image 1 Zoom",
+      "default": "cover",
+      "options": [
+        { "value": "contain", "label": "Zoom Out (Show Full Image)" },
+        { "value": "cover", "label": "Normal (Fill Container)" },
+        { "value": "fill", "label": "Zoom In (Stretch to Fill)" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Second Image (50% width)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link URL 2"
+    },
+    {
+      "type": "text",
+      "id": "link_text_2",
+      "label": "Link Text 2",
+      "default": "Link 2"
+    },
+    {
+      "type": "select",
+      "id": "image_2_position",
+      "label": "Image 2 Position",
+      "default": "center center",
+      "options": [
+        { "value": "left top", "label": "Top Left" },
+        { "value": "center top", "label": "Top Center" },
+        { "value": "right top", "label": "Top Right" },
+        { "value": "left center", "label": "Center Left" },
+        { "value": "center center", "label": "Center Center" },
+        { "value": "right center", "label": "Center Right" },
+        { "value": "left bottom", "label": "Bottom Left" },
+        { "value": "center bottom", "label": "Bottom Center" },
+        { "value": "right bottom", "label": "Bottom Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_2_zoom",
+      "label": "Image 2 Zoom",
+      "default": "cover",
+      "options": [
+        { "value": "contain", "label": "Zoom Out (Show Full Image)" },
+        { "value": "cover", "label": "Normal (Fill Container)" },
+        { "value": "fill", "label": "Zoom In (Stretch to Fill)" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner Title",
+      "default": "MOST-LOVED LINEN"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_testimonial",
+      "label": "Banner Testimonial",
+      "default": "\"Obsessed! Wonderful fit and quality. Perfect for summer.\""
+    },
+    {
+      "type": "text",
+      "id": "banner_button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Third Image (25% width)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Link URL 3"
+    },
+    {
+      "type": "text",
+      "id": "link_text_3",
+      "label": "Link Text 3",
+      "default": "Link 3"
+    },
+    {
+      "type": "select",
+      "id": "image_3_position",
+      "label": "Image 3 Position",
+      "default": "center center",
+      "options": [
+        { "value": "left top", "label": "Top Left" },
+        { "value": "center top", "label": "Top Center" },
+        { "value": "right top", "label": "Top Right" },
+        { "value": "left center", "label": "Center Left" },
+        { "value": "center center", "label": "Center Center" },
+        { "value": "right center", "label": "Center Right" },
+        { "value": "left bottom", "label": "Bottom Left" },
+        { "value": "center bottom", "label": "Bottom Center" },
+        { "value": "right bottom", "label": "Bottom Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_3_zoom",
+      "label": "Image 3 Zoom",
+      "default": "cover",
+      "options": [
+        { "value": "contain", "label": "Zoom Out (Show Full Image)" },
+        { "value": "cover", "label": "Normal (Fill Container)" },
+        { "value": "fill", "label": "Zoom In (Stretch to Fill)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Banner"
+    }
+  ]
+}
+{% endschema %}

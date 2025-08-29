@@ -1,0 +1,125 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header_section": {
+      "type": "header",
+      "blocks": {
+        "header-logo": {
+          "type": "_header-logo",
+          "static": true,
+          "settings": {
+            "hide_logo_on_home_page": false,
+            "custom_height": 20,
+            "custom_height_mobile": 12,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "header-menu": {
+          "type": "_header-menu",
+          "static": true,
+          "settings": {
+            "menu": "main-menu",
+            "menu_style": "featured_products",
+            "featured_products_aspect_ratio": "4 / 5",
+            "featured_collections_aspect_ratio": "16 / 9",
+            "image_border_radius": 0,
+            "product_title_case": "default",
+            "collection_title_case": "default",
+            "color_scheme": "",
+            "menu_font_style": "inverse",
+            "type_font_primary_link": "subheading",
+            "type_font_primary_size": "0.875rem",
+            "type_case_primary_link": "none",
+            "type_font_secondary_link": "body",
+            "type_case_secondary_link": "none",
+            "type_font_tertiary_link": "body",
+            "type_case_tertiary_link": "none",
+            "navigation_bar": false,
+            "color_scheme_navigation_bar": "",
+            "drawer_accordion": false,
+            "drawer_accordion_expand_first": false,
+            "drawer_dividers": false
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "logo_position": "left",
+        "menu_position": "center",
+        "menu_image_1": "shopify://shop_images/WSA618_16_LRG_4611cb00-7df4-443b-8b2b-29ab75f057f9.jpg",
+        "menu_image_1_title": "Streamers",
+        "menu_image_1_collection": "streamers",
+        "menu_image_2": "shopify://shop_images/WSA622C_LRG_0a71b4f7-2465-4721-ab05-b02a3abb897f.jpg",
+        "menu_image_2_title": "",
+        "menu_image_2_collection": "sashes",
+        "menu_image_3": "shopify://shop_images/DQBS002A_1_LRG.jpg",
+        "menu_image_3_title": "",
+        "menu_image_3_collection": "pointe-shoes",
+        "menu_image_4": "shopify://shop_images/DQTS003A_LRG_c20438dc-94f6-4fda-8e4b-d5df4cab80f5.jpg",
+        "menu_image_4_title": "",
+        "menu_image_4_collection": "tap-shoes",
+        "menu_image_5": "shopify://shop_images/DQCHT001A_1_LRG.jpg",
+        "menu_image_5_title": "",
+        "menu_image_5_collection": "uniforms",
+        "menu_image_6": "shopify://shop_images/DQCHSET002_1_LRG_f6130816-9fc4-4d68-b739-994d36af6b63.jpg",
+        "menu_image_6_title": "",
+        "menu_image_6_collection": "pom-poms",
+        "menu_image_7": "shopify://shop_images/WSD105_1_LRG.jpg",
+        "menu_image_7_title": "",
+        "menu_image_7_collection": "praise-dance",
+        "menu_image_8": "shopify://shop_images/BELBS009_LRG_3e2aaf31-965e-4308-9510-38d707a3f1de.jpg",
+        "menu_image_8_title": "",
+        "menu_image_8_collection": "belly-dance",
+        "menu_image_9": "shopify://shop_images/DQTM004_LRG_fc1c23f7-3995-426b-8866-2c289ace6992.jpg",
+        "menu_image_9_title": "",
+        "menu_image_9_collection": "tambourines",
+        "menu_image_10": "shopify://shop_images/DQCHSH001_LRG_35362e12-ef0e-4ad4-aa5f-3c5d5b4b634f.jpg",
+        "menu_image_10_title": "",
+        "menu_image_10_collection": "cheer-shoes",
+        "menu_row": "top",
+        "show_search": true,
+        "search_position": "right",
+        "search_row": "top",
+        "show_country": false,
+        "country_selector_style": false,
+        "show_language": false,
+        "localization_font": "heading",
+        "localization_font_size": "1rem",
+        "localization_position": "right",
+        "localization_row": "top",
+        "section_width": "page-width",
+        "section_height": "standard",
+        "enable_sticky_header": "scroll-up",
+        "divider_width": 0,
+        "divider_size": "page-width",
+        "border_width": 0,
+        "color_scheme_top": "scheme-1",
+        "color_scheme_bottom": "",
+        "color_scheme_transparent": "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7",
+        "enable_transparent_header_home": false,
+        "home_color_scheme": "inverse",
+        "enable_transparent_header_product": false,
+        "product_color_scheme": "default",
+        "enable_transparent_header_collection": false,
+        "collection_color_scheme": "default"
+      }
+    }
+  },
+  "order": [
+    "header_section"
+  ]
+}

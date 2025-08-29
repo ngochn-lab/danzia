@@ -1,0 +1,200 @@
+<div class="mega-menu__flex-row">
+  <!-- LEFT COLUMN: MENU LIST -->
+  <div class="mega-menu__menu-list">
+    {% assign total_links = parent_link.links.size %}
+    {% if total_links > 8 %}
+      {% assign half_ceil = total_links | times: 1.0 | divided_by: 2 | ceil %}
+      <ul class="mega-menu__mini-column">
+        {% for link in parent_link.links limit: half_ceil %}
+          <li>
+            <a href="{{ link.url }}" class="mega-menu__link {% if link.links != blank %}mega-menu__link--parent{% endif %}">
+              <span class="mega-menu__link-title">{{ link.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="mega-menu__mini-column">
+        {% for link in parent_link.links offset: half_ceil %}
+          <li>
+            <a href="{{ link.url }}" class="mega-menu__link {% if link.links != blank %}mega-menu__link--parent{% endif %}">
+              <span class="mega-menu__link-title">{{ link.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <ul class="mega-menu__mini-column">
+        {% for link in parent_link.links %}
+          <li>
+            <a href="{{ link.url }}" class="mega-menu__link {% if link.links != blank %}mega-menu__link--parent{% endif %}">
+              <span class="mega-menu__link-title">{{ link.title }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+
+  <div class="mega-menu__images">
+    {% assign max_slots = 30 %}
+    {% for i in (1..max_slots) %}
+      {% capture image_key %}menu_image_{{ i }}{% endcapture %}
+      {% capture collection_key %}menu_image_{{ i }}_collection{% endcapture %}
+      {% assign image = section.settings[image_key] %}
+      {% assign collection = section.settings[collection_key] %}
+      {% assign show_menu_image = false %}
+      {% if image and collection %}
+        {% for link in parent_link.links %}
+          {% if link.title and collection.handle %}
+            {% assign link_title_normalized = link.title | downcase | replace: ' ', '-' %}
+            {% assign handle_normalized = collection.handle | downcase %}
+            {% if link_title_normalized == handle_normalized %}
+              {% assign show_menu_image = true %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if show_menu_image %}
+          <div>
+            <a href="{{ collection.url }}" class="mega-menu__image-link">
+              <img src="{{ image | image_url: width: 190, height: 300 }}" alt="{{ collection.title }}" class="mega-menu__custom-image" />
+              <div class="mega-menu__image-title">
+                {{ collection.title }}
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% style %}
+.mega-menu__flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 36px;
+  width: 100%;
+}
+.mega-menu__menu-list {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  flex: 1 1 0;
+}
+.mega-menu__mini-column {
+  flex: 1 1 0;
+  min-width: 140px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.mega-menu__mini-column li {
+  margin-bottom: 6px;
+  transition: transform 0.13s;
+}
+.mega-menu__mini-column li:last-child {
+  margin-bottom: 0;
+}
+.mega-menu__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #32325d;
+  padding: 3px 12px;
+  border-radius: 6px;
+  transition: background 0.14s, color 0.14s;
+  position: relative;
+}
+.mega-menu__link-title {
+  transition: text-decoration 0.13s;
+   font-family: "Source Sans Pro", sans-serif;
+}
+
+.mega-menu__link:hover .mega-menu__link-title,
+.mega-menu__link:focus .mega-menu__link-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+.mega-menu__link:active {
+  background: #e5e6ed;
+}
+
+/* IMAGES COLUMN */
+.mega-menu__images {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  min-width: 220px;
+  margin-top: 0;
+  flex: 0 0 auto;
+}
+.mega-menu__images > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+.mega-menu__image-link {
+  text-decoration: none;
+  color: inherit;
+  border-radius: 5px;
+  display: block;
+  /* Remove all hover effects */
+  transition: none;
+}
+.mega-menu__image-link:hover,
+.mega-menu__image-link:focus {
+  /* No box-shadow, no background change */
+  box-shadow: none;
+  background: none;
+}
+/* Underline only the image title on hover/focus */
+.mega-menu__image-link:hover .mega-menu__image-title,
+.mega-menu__image-link:focus .mega-menu__image-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+.mega-menu__custom-image {
+  width: 190px !important;
+  height: 300px !important;
+  object-fit: cover;
+  border-radius: 0 !important;
+  display: block;
+  box-shadow: 0 2px 8px rgba(40, 40, 80, 0.05);
+  background: #e5e6ed;
+  transition: box-shadow 0.18s;
+}
+.mega-menu__image-title {
+  margin-top: 7px;
+  font-size: 1em;
+  font-weight: 500;
+   font-family: "Source Sans Pro", sans-serif;
+  text-align: center;
+  color: #353566;
+  letter-spacing: 0.01em;
+  transition: text-decoration 0.13s;
+}
+@media (max-width: 900px) {
+  .mega-menu__flex-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .mega-menu__menu-list {
+    flex-direction: column;
+    gap: 0;
+  }
+  .mega-menu__images {
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 20px;
+  }
+}
+{% endstyle %}

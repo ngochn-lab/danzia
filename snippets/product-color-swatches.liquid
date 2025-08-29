@@ -1,0 +1,70 @@
+{% comment %}
+  Color Swatch Snippet: Renders color swatches for a given product.
+  Usage: {% render 'product-color-swatches', product: product %}
+{% endcomment %}
+
+{% assign color_option = product.options_with_values | where: "name", "Color" | first %}
+{% if color_option %}
+  {% capture _color_map %}
+    {% render 'color-map' %}
+  {% endcapture %}
+  {% assign color_map = _color_map | strip %}
+  <div class="product-card-footer_colorOptionWrapper__nJkz_ optionSelector_optionListWrapper__1v6mo"
+       data-content-type="option-selector"
+       style="padding-left:12px; padding-right:12px; margin-top:12px;">
+    {% assign show_colors = color_option.values | slice: 0, 5 %}
+    {% for value in show_colors %}
+      {%- assign pairs = color_map | split: ',' -%}
+      {%- assign color_names = value | replace: '-', '/' | split: '/' -%}
+      {%- assign color_hexes = '' -%}
+      {%- for color_name in color_names -%}
+        {%- assign color_name_normalized = color_name | downcase | strip -%}
+        {%- assign hex = '' -%}
+        {%- for pair in pairs -%}
+          {%- assign kv = pair | split: ':' -%}
+          {%- assign key_normalized = kv[0] | downcase | strip -%}
+          {%- if key_normalized == color_name_normalized -%}
+            {%- assign hex = kv[1] | strip -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- assign color_hexes = color_hexes | append: hex | append: ',' -%}
+      {%- endfor -%}
+      {%- assign color_hexes_array = color_hexes | split: ',' -%}
+      {%- assign color_hexes_size = color_hexes_array | size -%}
+      {%- if color_hexes_size > 1 and color_hexes_array[0] != '' and color_hexes_array[1] != '' -%}
+        {%- assign gradient = 'linear-gradient(90deg, ' | append: color_hexes_array[0] | append: ' 50%, ' | append: color_hexes_array[1] | append: ' 50%)' -%}
+        {%- assign swatch_style = 'background: ' | append: gradient -%}
+      {%- else -%}
+        {%- assign swatch_style = 'background-color: ' | append: color_hexes_array[0] | default: '#eee' -%}
+      {%- endif -%}
+
+      <div data-content-type="option-wrapper"
+           data-value="{{ value }}"
+           class="optionSelector_optionWrapper__MQB_H product-card-footer_colorOptionWrapper__optionWrapper__tIr5j"
+           style="display:inline-block; margin-right:8px;">
+        <input type="radio"
+               id="option-{{ product.id }}-{{ forloop.index }}"
+               class="option-container_input__jB42j colorOption_input__tlbkC"
+               name="option-color-{{ product.id }}"
+               value="{{ value }}"
+               {% if forloop.first %}checked{% endif %}
+               style="display:none;">
+        <label for="option-{{ product.id }}-{{ forloop.index }}"
+               class="option-container_label__1unSv colorOption_label__jzUrV product-card-footer_colorOptionProductCard__C12d9"
+               style="cursor:pointer; display:inline-block;">
+          <span class="colorOption_colorDot__zks_Z"
+                style="width:18px; height:18px; display:inline-block; border-radius:50%; border:2px solid #ddd; vertical-align:middle; {{ swatch_style }};">
+          </span>
+          <span class="sr-only">{{ value }}</span>
+        </label>
+      </div>
+    {% endfor %}
+
+    {% if color_option.values.size > 5 %}
+      <span class="optionSelector_excessElements__zSEMc"
+            style="display:inline-block; vertical-align:middle; margin-left:4px;">
+        +{{ color_option.values.size | minus: 5 }}
+      </span>
+    {% endif %}
+  </div>
+{% endif %}
